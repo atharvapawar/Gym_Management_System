@@ -1,6 +1,16 @@
 # forms.py
 from django import forms
-from .models import Member, Enquiry
+from .models import Plan, Member, Enquiry
+
+class PlanFrom(forms.ModelForm):
+    class Meta:
+        model = Plan
+        fields = ['name', 'amount', 'duration']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'amount': forms.NumberInput(attrs={'class': 'form-control'}),
+            'duration': forms.TextInput(attrs={'class': 'form-control'}),
+        }
 
 class MemberForm(forms.ModelForm):
     class Meta:
@@ -25,5 +35,5 @@ class EnquiryFrom(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'subject': forms.TextInput(attrs={'class': 'form-control'}),
             'message': forms.Textarea(attrs={'class': 'form-control'}),
-            #'created_on': forms.DateTimeInput(attrs={'class': 'form-control'}) 
         }
+

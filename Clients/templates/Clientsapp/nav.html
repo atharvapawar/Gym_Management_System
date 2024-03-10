@@ -14,8 +14,8 @@
                         Plans
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownPlans">
-                        <a class="dropdown-item" href="{% url 'plan_list' %}">Add Plan</a>
-                        <a class="dropdown-item" href="#">View Plans</a>
+                        <a class="dropdown-item" href="{% url 'add_plan' %}">Add Plan</a>
+                        <a class="dropdown-item" href="{% url 'plan_view' %}">View Plans</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -23,8 +23,8 @@
                         Members
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMembers">
-                        <a class="dropdown-item" href="{% url 'member_list' %}">Add Member</a>
-                        <a class="dropdown-item" href="#">View Members</a>
+                        <a class="dropdown-item" href="{% url 'add_member' %}">Add Member</a>
+                        <a class="dropdown-item" href="{% url 'view_members' %}">View Members</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -32,8 +32,8 @@
                         Enquiries
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownEnquiries">
-                        <a class="dropdown-item" href="{% url 'enquiry' %}">Add Enquiry</a>
-                        <a class="dropdown-item" href="#">View Enquiries</a>
+                        <a class="dropdown-item" href="{% url 'add_enquiry' %}">Add Enquiry</a>
+                        <a class="dropdown-item" href="{% url 'view_enquiry' %}">View Enquiries</a>
                     </div>
                 </li>
                 {% if request.user.is_authenticated %}

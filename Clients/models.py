@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Plan(models.Model):
     name = models.CharField(max_length=100)
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    amount = models.IntegerField()
     duration = models.CharField(max_length=100)
 
     def __str__(self):
@@ -21,6 +21,7 @@ class Member(models.Model):
     ]
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)  
     plan = models.ForeignKey(Plan, on_delete=models.SET_NULL, null=True)
+    total_fees = models.IntegerField()
     enrolled_on = models.DateField(auto_now_add=True)  
 
     def __str__(self):

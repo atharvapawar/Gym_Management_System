@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %} View Members {% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <h2 class="text-center mb-4">Members Joined</h2>
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    {% for member in members %}
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h3>{{ member.name }}</h3>
+                                    <p><strong>Phone:</strong> {{ member.phone }}</p>
+                                    <p><strong>Email:</strong> {{ member.email }}</p>
+                                    <p><strong>Age:</strong> {{ member.age }}</p>
+                                    <p><strong>Gender:</strong> {{ member.get_gender_display }}</p>
+                                    <p><strong>Enrolled On:</strong> {{ member.enrolled_on|date:"F d, Y" }}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Plan: {{ member.plan }}</h5>
+                                            <p class="card-text"><strong>Total Fees:</strong> {{ member.total_fees }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
