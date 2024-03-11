@@ -13,42 +13,33 @@
                     <a class="nav-link" href="{% url 'plan_view' %}" style="font-size: 20px;">View Plans</a>
                 </li>
                 {% if request.user.is_authenticated %}
-                                {% if request.user.is_staff %}
+                    {% if request.user.is_staff %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'add_plan' %}" style="font-size: 20px;">Add Plan</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMembers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 20px;">
-                                Members
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMembers">
-                                {% if request.user.is_staff %}
-                                <a class="dropdown-item" href="{% url 'add_member' %}">Add Member</a>
-                                <a class="dropdown-item" href="{% url 'view_members' %}">View Members</a>
-                            </div>
-                                {% else %}
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMembers">
-                                <a class="dropdown-item" href="{% url 'view_members' %}">View Members</a>
-                            </div>
-                                {% endif %}
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownEnquiries" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 20px;">
-                                Enquiries
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownEnquiries">
-                                {% if request.user.is_staff %}
-                                <a class="dropdown-item" href="{% url 'add_enquiry' %}">Add Enquiry</a>
-                                <a class="dropdown-item" href="{% url 'view_enquiry' %}">View Enquiries</a>
-                            </div>
-                                {% else %}
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownEnquiries">
-                                <a class="dropdown-item" href="{% url 'add_enquiry' %}">Add Enquiry</a>
-                            </div>
-                                {% endif %}
-                        </li>
                     {% endif %}
-                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMembers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 20px;">
+                            Members
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMembers">
+                            {% if request.user.is_staff %}
+                                <a class="dropdown-item" href="{% url 'add_member' %}">Add Member</a>
+                            {% endif %}
+                            <a class="dropdown-item" href="{% url 'view_members' %}">View Members</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownEnquiries" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 20px;">
+                            Enquiries
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownEnquiries">
+                            {% if request.user.is_staff %}
+                                <a class="dropdown-item" href="{% url 'view_enquiry' %}">View Enquiries</a>
+                            {% endif %}
+                            <a class="dropdown-item" href="{% url 'add_enquiry' %}">Add Enquiry</a>
+                        </div>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}" style="font-size: 20px;">Logout</a>
                     </li>
