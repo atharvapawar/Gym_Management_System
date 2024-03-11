@@ -1,6 +1,13 @@
 # forms.py
 from django import forms
-from .models import Plan, Member, Enquiry
+from .models import Plan, Member, Enquiry ,CustomUser
+from django.contrib.auth.forms import UserCreationForm
+
+class CustomUserRegistrationForm(UserCreationForm):
+
+    class Meta:
+        model = CustomUser
+        fields =  ['username','password', 'email']
 
 class PlanFrom(forms.ModelForm):
     class Meta:
@@ -36,4 +43,3 @@ class EnquiryFrom(forms.ModelForm):
             'subject': forms.TextInput(attrs={'class': 'form-control'}),
             'message': forms.Textarea(attrs={'class': 'form-control'}),
         }
-

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Pets List Page {% endblock %}
+{% block title %} Plans List Page {% endblock %}
 
 {% block content %}
 <div class="row">
@@ -11,9 +11,14 @@
             <li class="list-group-item">
                 <div class="d-flex w-100 justify-content-between">
                     <h2><a href="#" style="text-decoration: none;">{{ plan.name }}</a></h2>
-                    <h3>{{ plan.amount }} Rs</h3>
+                    <h3> {{ plan.amount }} Rs</h3>
                     <h4>{{ plan.duration }}</h4>
-                    
+                    {% if request.user.is_staff %}
+                    <form method="post" action="{% url 'remove_from_plan' plan.name %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                    {% endif %}
                 </div>
             </li>
         {% endfor %}
@@ -21,4 +26,5 @@
     </div>
 </div>
 {% endblock %}
+
 

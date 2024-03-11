@@ -6,11 +6,12 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('add_plan/', views.add_plan, name='add_plan'),
     path('plan_view/', views.plan_view, name='plan_view'),
-   # path('remove_from_plan/<int:plan_id>/', views.remove_from_plan, name='remove_from_plan'),
+    path('remove_from_plan/<str:plan_name>/', views.remove_from_plan, name='remove_from_plan'),
     path('add_member/', views.add_member, name='add_member'),
     path('view_members/', views.view_members, name='view_members'),
     path('add_enquiry/', views.add_enquiry, name='add_enquiry'),
     path('view_enquirys/', views.view_enquiry, name='view_enquiry'),
+    path('register/', views.register, name='register'),
     path('login/', views.my_login, name='login'),
     path('logout/', views.my_logout, name='logout'),
 ]
