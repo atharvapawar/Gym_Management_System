@@ -18,10 +18,12 @@
                                     <p><strong>Subject:</strong> {{ enquiry.subject }}</p>
                                     <p><strong>Message:</strong> {{ enquiry.message }}</p>
                                     <p><strong>Created On:</strong> {{ enquiry.created_on|date:"F d, Y" }}</p>
+                                    {% if request.user.is_staff %}
                                     <form action="{% url 'remove_from_enquiry' enquiry.id %}" method="post">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-danger">Remove</button>
                                     </form>
+                                    {% endif %}
                                 </div>
                                 <div class="col-md-4">
                                     <div class="card">

@@ -27,10 +27,12 @@
                                             <p class="card-text"><strong>Total Fees:</strong> {{ member.total_fees }}</p>
                                         </div>
                                         <div class="card-body">
+                                            {% if request.user.is_staff %}
                                             <form method="post" action="{% url 'remove_from_member' member.id %}" class="col-md-5">
                                                 {% csrf_token %}
                                                 <button type="submit" class="btn btn-danger">Remove</button>
                                             </form>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>

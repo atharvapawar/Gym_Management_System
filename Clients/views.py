@@ -77,6 +77,7 @@ def remove_from_enquiry(request, enquiry_id):
 
     return render(request, 'Clientsapp/view_enquiry.html')
 
+@login_required
 def view_members(request):
     members = Member.objects.all()
     return render(request, 'Clientsapp/view_members.html', {'members': members})
@@ -100,6 +101,7 @@ def view_enquiry(request):
     enquiries = Enquiry.objects.all()
     return render(request, 'Clientsapp/view_enquiry.html', {'enquiries': enquiries})
 
+@login_required
 def add_enquiry(request):
     if request.method == 'POST':
         form = EnquiryFrom(request.POST, request.FILES)
