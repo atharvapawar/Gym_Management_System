@@ -1,18 +1,25 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from django.contrib import messages
 from .models import Plan, Member, Enquiry
+from django.contrib.auth.models import User
 from .forms import PlanFrom, MemberForm, EnquiryFrom, CustomUserRegistrationForm
-from django.views.decorators.csrf import csrf_exempt
+#from django.views.decorators.csrf import csrf_exempt
 #from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
     plans = Plan.objects.all()
-    return render(request, 'Clientsapp/home.html', {'plans': plans})
+    if request.method == 'POST':
+        form = EnquiryFrom(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = EnquiryFrom()
+    return render(request, 'Clientsapp/home.html', {'form': form ,'plans': plans} )
 
 ################### Authentications###################
-@csrf_exempt
 def register(request):
     if request.method == 'POST':
         form = CustomUserRegistrationForm(request.POST)
@@ -22,13 +29,12 @@ def register(request):
             password = form.cleaned_data['password']
 
             user = User.objects.create_user(username=username, email=email, password=password)
-
+            messages.success(request, 'Registration successful. You can now log in.')
             return redirect('login')
     else:
         form = CustomUserRegistrationForm()
     return render(request, 'Authorization/Register.html', {'form': form})
-
-@csrf_exempt       
+      
 def my_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -38,8 +44,7 @@ def my_login(request):
             login(request, user)
             return redirect('home')
         else:
-            # Handle invalid login
-            # Redirect to login page with error message
+            messages.error(request, 'Invalid username or password. Please try again or return to the home page and use the enquiry section to inform us.')
             return redirect('login')
     return render(request, 'Authorization/login.html')
 
@@ -59,6 +64,23 @@ def view_members(request):
 def view_enquiry(request):
     enquiries = Enquiry.objects.all()
     return render(request, 'Clientsapp/Viewing/view_enquiry.html', {'enquiries': enquiries})
+
+################### Search ###################
+def plan_results(request):
+    plan_query = request.GET.get('plan_search', '')
+    plans = Plan.objects.filter(name__icontains=plan_query)
+    return render(request, 'Clientsapp/Viewing/plan_view.html', {'plans': plans, 'plan_query': plan_query})
+
+def member_results(request):
+    member_query = request.GET.get('member_search', '')
+    members = Member.objects.filter(name__icontains=member_query)
+    return render(request, 'Clientsapp/Viewing/view_members.html', {'members': members, 'member_query': member_query})
+
+# def enquiry_results(request):
+#     enquiry_query = request.GET.get('enquiry_search', '')
+#     enquiry = Enquiry.objects.filter(name__icontains=enquiry_query)
+#     return render(request, 'Clientsapp/Viewing/view_enquiry.html', {'enquiry': enquiry, 'enquiry_query': enquiry_query})
+
 
 ################### Adds ###################
 def add_plan(request):

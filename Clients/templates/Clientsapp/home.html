@@ -3,7 +3,7 @@
 {% block title %}Gym Client Management Home{% endblock %}
 
 {% block content %}
-
+<br>
 <div class="container">
     <div class="jumbotron">
         <h1 class="display-4">Welcome to Gym Client Management</h1>
@@ -23,7 +23,19 @@
                 </div>
             </li>
         {% endfor %}
+        <br>
+        <h1>Enquiry</h1><hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <form method="post" enctype="multipart/form-data" id="enquiry-form">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-warning">Inform Us!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 {% endblock %}

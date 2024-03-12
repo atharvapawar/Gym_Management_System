@@ -7,32 +7,9 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h2 class="mt-4 mb-4">Join Membership</h2>
-            <form method="post" enctype="multipart/form-data" id="member-form">
+            <form method="post" enctype="multipart/form-data" id="enquiry-form">
                 {% csrf_token %}
-                <div class="form-group">
-                    <label for="id_name">Name</label>
-                    {{ form.name }}
-                </div>
-                <div class="form-group">
-                    <label for="id_phone">Phone</label>
-                    {{ form.phone }}
-                </div>
-                <div class="form-group">
-                    <label for="id_email">Email</label>
-                    {{ form.email }}
-                </div>
-                <div class="form-group">
-                    <label for="id_age">Age</label>
-                    {{ form.age }}
-                </div>
-                <div class="form-group">
-                    <label for="id_gender">Gender</label>
-                    {{ form.gender }}
-                </div>
-                <div class="form-group">
-                    <label for="id_plan">Plan</label>
-                    {{ form.plan }}
-                </div>
+                {{ form.as_p }}
                 <button type="submit" class="btn btn-warning">Make Payment</button>
             </form>
             <br>

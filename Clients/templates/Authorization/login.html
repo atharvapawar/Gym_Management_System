@@ -25,43 +25,13 @@
             </div>
         </div>
     </div>
-</div>
-<script>
-    // Add an event listener for form submission
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
-      // Prevent the form from submitting normally
-      event.preventDefault();
-  
-      // Get the form data
-      var formData = new FormData(this);
-  
-      // Get the CSRF token from the form
-      var csrfToken = formData.get('csrfmiddlewaretoken');
-  
-      // Send a POST request to the login endpoint
-      fetch("{% url 'login' %}", {
-        method: "POST",
-        body: formData,
-        headers: {
-          "X-CSRFToken": csrfToken  // Include the CSRF token in the request headers
-        }
-      })
-      .then(response => {
-        // Check if the response is successful
-        if (response.ok) {
-          // Redirect to the home page if login is successful
-          window.location.href = "{% url 'home' %}";
-        } else {
-          // Display an alert if login fails
-          alert("Login failed. Please check your credentials.");
-        }
-      })
-      .catch(error => {
-        console.error("Error:", error);
-        // Display an alert if there is an error
-        alert("An error occurred. Please try again later.");
-      });
-    });
-  </script>
-  
+</div> <br>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
 {% endblock %}

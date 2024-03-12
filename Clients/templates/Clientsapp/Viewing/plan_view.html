@@ -6,6 +6,13 @@
 <div class="row">
     <div class="col-md-8 offset-md-2">
     <h2 class="mt-4 mb-4">Plans</h2>
+    <form class="form-inline mb-4" action="{% url 'plan_results' %}" method="GET">
+        <div class="form-group mr-2">
+            <input type="text" name="plan_search" class="form-control" 
+            placeholder="Search by name" value="{{ plan_query }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>    
     <ul class="list-group">
         {% for plan in plans %}
             <li class="list-group-item">
