@@ -11,6 +11,7 @@ def home(request):
     plans = Plan.objects.all()
     return render(request, 'Clientsapp/home.html', {'plans': plans})
 
+################### Authentications###################
 @csrf_exempt
 def register(request):
     if request.method == 'POST':
@@ -46,6 +47,7 @@ def my_logout(request):
     logout(request)
     return redirect('login')
 
+################### Views ###################
 def plan_view(request):
     plans = Plan.objects.all()
     return render(request, 'Clientsapp/Viewing/plan_view.html', {'plans': plans})
@@ -58,6 +60,7 @@ def view_enquiry(request):
     enquiries = Enquiry.objects.all()
     return render(request, 'Clientsapp/Viewing/view_enquiry.html', {'enquiries': enquiries})
 
+################### Adds ###################
 def add_plan(request):
     if request.method == 'POST':
         form = PlanFrom(request.POST)
@@ -91,6 +94,7 @@ def add_enquiry(request):
         form = EnquiryFrom()
     return render(request, 'Clientsapp/Adding/add_enquiry.html', {'form': form})
 
+################### Delete ###################
 def remove_from_plan(request, plan_id):
     plan = get_object_or_404(Plan, id=plan_id)
     
