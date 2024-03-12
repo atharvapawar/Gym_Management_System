@@ -26,6 +26,12 @@
                                             <h5 class="card-title">Plan: {{ member.plan }}</h5>
                                             <p class="card-text"><strong>Total Fees:</strong> {{ member.total_fees }}</p>
                                         </div>
+                                        <div class="card-body">
+                                            <form method="post" action="{% url 'remove_from_member' member.id %}" class="col-md-5">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger">Remove</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

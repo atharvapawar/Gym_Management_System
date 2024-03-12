@@ -11,6 +11,7 @@ class CustomUser(AbstractUser):
     user_permissions = models.ManyToManyField(Permission, verbose_name='user permissions', blank=True)
 
 class Plan(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     amount = models.IntegerField()
     duration = models.CharField(max_length=100)
@@ -19,6 +20,7 @@ class Plan(models.Model):
         return self.name
 
 class Member(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=15)
     email = models.EmailField(unique=True)
@@ -37,6 +39,7 @@ class Member(models.Model):
         return self.name
 
 class Enquiry(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     email = models.EmailField()
     subject = models.CharField(max_length=200)

@@ -6,7 +6,7 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-10 offset-md-1">
-            <h2 class="text-center mb-4">View Complains</h2>
+            <h2 class="text-center mb-4">View Enquiries</h2>
             <div class="card">
                 <ul class="list-group list-group-flush">
                     {% for enquiry in enquiries %}
@@ -18,6 +18,10 @@
                                     <p><strong>Subject:</strong> {{ enquiry.subject }}</p>
                                     <p><strong>Message:</strong> {{ enquiry.message }}</p>
                                     <p><strong>Created On:</strong> {{ enquiry.created_on|date:"F d, Y" }}</p>
+                                    <form action="{% url 'remove_from_enquiry' enquiry.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger">Remove</button>
+                                    </form>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="card">

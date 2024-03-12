@@ -48,8 +48,8 @@ def add_plan(request):
     return render(request, 'Clientsapp/add_plan.html', {'form': form})
 
 @login_required
-def remove_from_plan(request, plan_name):
-    plan = get_object_or_404(Plan, name=plan_name)
+def remove_from_plan(request, plan_id):
+    plan = get_object_or_404(Plan, id=plan_id)
     
     if request.method == 'POST':
         plan.delete()
@@ -57,6 +57,25 @@ def remove_from_plan(request, plan_name):
 
     return render(request, 'Clientsapp/plan_view.html')
 
+@login_required
+def remove_from_member(request, member_id):
+    member = get_object_or_404(Member, id=member_id)
+    
+    if request.method == 'POST':
+        member.delete()
+        return redirect('view_members')
+
+    return render(request, 'Clientsapp/view_members.html')
+
+@login_required
+def remove_from_enquiry(request, enquiry_id):
+    enquiry = get_object_or_404(Enquiry, id=enquiry_id)
+
+    if request.method == 'POST':
+        enquiry.delete()
+        return redirect('view_enquiry')
+
+    return render(request, 'Clientsapp/view_enquiry.html')
 
 def view_members(request):
     members = Member.objects.all()
