@@ -4,7 +4,8 @@ from .models import Plan, Member, Enquiry ,CustomUser
 from django.contrib.auth.forms import UserCreationForm
 
 class CustomUserRegistrationForm(UserCreationForm):
-
+    password = forms.CharField(widget=forms.PasswordInput)
+    
     class Meta:
         model = CustomUser
         fields =  ['username','password', 'email']

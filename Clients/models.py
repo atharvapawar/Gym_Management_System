@@ -3,9 +3,6 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 
 # Create your models here.
 class CustomUser(AbstractUser):
-    city = models.CharField(max_length=50)
-    phone_number = models.CharField(max_length=20)
-
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'

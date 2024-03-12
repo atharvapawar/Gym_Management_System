@@ -11,6 +11,18 @@
         <hr class="my-4">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quia unde ea saepe fugit alias in minima. Debitis vel dolorem laudantium voluptatem adipisci in praesentium harum fugit, ad ducimus. Ad, ratione. Odio mollitia quos repudiandae. Error, dolor, dignissimos consectetur, possimus quae amet harum fugiat doloribus dolore unde enim molestias nulla mollitia hic.</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quia unde ea saepe fugit alias in minima. Debitis vel dolorem laudantium voluptatem adipisci in praesentium harum fugit, ad ducimus. Ad, ratione. Odio mollitia quos repudiandae. Error, dolor, dignissimos consectetur, possimus quae amet harum fugiat doloribus dolore unde enim molestias nulla mollitia hic? Adipisci iure, quam deserunt omnis consequatur earum perferendis impedit mollitia inventore sunt repellendus vel autem eius corporis in, harum assumenda? Libero, consequatur eligendi. Quod officia inventore corrupti neque dolorum nemo. Culpa vitae corrupti animi facilis officia rem officiis, repudiandae enim veritatis magnam aut, nihil quas quis repellat illo.</p>
+
+        <h1>Our Plans :</h1>
+        <hr>
+        {% for plan in plans %}
+            <li class="list-group-item">
+                <div class="d-flex w-100 justify-content-between">
+                    <h2><a href="#" style="text-decoration: none;">{{ plan.name }}</a></h2>
+                    <h3> {{ plan.amount }} Rs</h3>
+                    <h4>{{ plan.duration }}</h4>
+                </div>
+            </li>
+        {% endfor %}
     </div>
 </div>
 

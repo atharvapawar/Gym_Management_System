@@ -29,7 +29,8 @@ def register(request):
     return render(request, 'Register.html', {'form': form})
 
 def home(request):
-    return render(request, 'Clientsapp/home.html')
+    plans = Plan.objects.all()
+    return render(request, 'Clientsapp/home.html', {'plans': plans})
 
 def plan_view(request):
     plans = Plan.objects.all()
