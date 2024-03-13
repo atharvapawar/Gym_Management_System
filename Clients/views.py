@@ -143,3 +143,5 @@ def remove_from_enquiry(request, enquiry_id):
         return redirect('view_enquiry')
 
     return render(request, 'Clientsapp/Viewing/view_enquiry.html')
+
+################### Payment ###################
