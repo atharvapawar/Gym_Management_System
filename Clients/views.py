@@ -115,7 +115,7 @@ def add_enquiry(request):
     else:
         form = EnquiryFrom()
     return render(request, 'Clientsapp/Adding/add_enquiry.html', {'form': form})
-
+################### Update ###################
 ################### Delete ###################
 def remove_from_plan(request, plan_id):
     plan = get_object_or_404(Plan, id=plan_id)

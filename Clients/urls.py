@@ -21,6 +21,7 @@ urlpatterns = [
     path('add_plan/', views.add_plan, name='add_plan'),
     path('add_member/', views.add_member, name='add_member'),
     path('add_enquiry/', views.add_enquiry, name='add_enquiry'),
+    ################### Update ###################
     ################### Delete ###################
     path('remove_from_plan/<int:plan_id>/', views.remove_from_plan, name='remove_from_plan'),
     path('remove_from_member/<int:member_id>/', views.remove_from_member, name='remove_from_member'),
