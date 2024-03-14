@@ -29,5 +29,5 @@ urlpatterns = [
     path('remove_from_member/<int:member_id>/', views.remove_from_member, name='remove_from_member'),
     path('remove_from_enquiry/<int:enquiry_id>/', views.remove_from_enquiry, name='remove_from_enquiry'),
     ################### Payment ###################
-
+    
 ]
