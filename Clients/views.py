@@ -76,11 +76,10 @@ def member_results(request):
     members = Member.objects.filter(name__icontains=member_query)
     return render(request, 'Clientsapp/Viewing/view_members.html', {'members': members, 'member_query': member_query})
 
-# def enquiry_results(request):
-#     enquiry_query = request.GET.get('enquiry_search', '')
-#     enquiry = Enquiry.objects.filter(name__icontains=enquiry_query)
-#     return render(request, 'Clientsapp/Viewing/view_enquiry.html', {'enquiry': enquiry, 'enquiry_query': enquiry_query})
-
+def enquiry_results(request):
+    enquiry_query = request.GET.get('enquiry_search', '')
+    enquiries = Enquiry.objects.filter(name__icontains=enquiry_query)
+    return render(request, 'Clientsapp/Viewing/view_enquiry.html', {'enquiries': enquiries, 'enquiry_query': enquiry_query})
 
 ################### Adds ###################
 def add_plan(request):
@@ -127,6 +126,18 @@ def update_plan(request, id):
         form = PlanFrom(instance=plan)
 
     return render(request, 'Clientsapp/Updating/update_plan.html', {'form': form})
+
+def update_member(request, id):
+    member = get_object_or_404(Member, id=id)
+    if request.method == 'POST':
+        form = MemberForm(request.POST, instance=member)
+        if form.is_valid():
+            form.save()
+            return redirect('view_members')
+        else:
+            form = MemberForm(instance=member)
+        
+        return render(request, 'Clientsapp/Updating/update_member.html', {'form': form})
 
 ################### Delete ###################
 def remove_from_plan(request, plan_id):

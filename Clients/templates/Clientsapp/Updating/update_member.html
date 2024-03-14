@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %} Update Plan {% endblock %}
+{% block title %} Update member {% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <h2 class="mt-4 mb-4">Update Plan</h2>
+            <h2 class="mt-4 mb-4">Update Member</h2>
             <form method="post" enctype="multipart/form-data" id="member-form">
                 {% csrf_token %}
                 {{ form.as_p }}
