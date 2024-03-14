@@ -116,6 +116,18 @@ def add_enquiry(request):
         form = EnquiryFrom()
     return render(request, 'Clientsapp/Adding/add_enquiry.html', {'form': form})
 ################### Update ###################
+def update_plan(request, id):
+    plan = get_object_or_404(Plan, id=id)
+    if request.method == 'POST':
+        form = PlanFrom(request.POST, instance=plan)
+        if form.is_valid():
+            form.save()
+            return redirect('plan_view')
+    else:
+        form = PlanFrom(instance=plan)
+
+    return render(request, 'Clientsapp/Updating/update_plan.html', {'form': form})
+
 ################### Delete ###################
 def remove_from_plan(request, plan_id):
     plan = get_object_or_404(Plan, id=plan_id)
