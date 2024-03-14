@@ -1,7 +1,7 @@
 # forms.py
 from django import forms
-from .models import Plan, Member, Enquiry ,CustomUser
-from django.contrib.auth.forms import UserCreationForm
+from .models import *
+from django.contrib.auth.forms import *
 
 class CustomUserRegistrationForm(UserCreationForm):
     password = forms.CharField(widget=forms.PasswordInput)
