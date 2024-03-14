@@ -50,18 +50,9 @@ def my_logout(request):
     logout(request)
     return redirect('login')
 
-################### Views ###################
-def plan_view(request):
-    plans = Plan.objects.all()
-    return render(request, 'Clientsapp/Viewing/plan_view.html', {'plans': plans})
+################### Payment ###################
 
-def view_members(request):
-    members = Member.objects.all()
-    return render(request, 'Clientsapp/Viewing/view_members.html', {'members': members})
 
-def view_enquiry(request):
-    enquiries = Enquiry.objects.all()
-    return render(request, 'Clientsapp/Viewing/view_enquiry.html', {'enquiries': enquiries})
 
 ################### Search ###################
 def plan_results(request):
@@ -79,7 +70,20 @@ def enquiry_results(request):
     enquiries = Enquiry.objects.filter(name__icontains=enquiry_query)
     return render(request, 'Clientsapp/Viewing/view_enquiry.html', {'enquiries': enquiries, 'enquiry_query': enquiry_query})
 
-################### Adds ###################
+################### View ###################
+def plan_view(request):
+    plans = Plan.objects.all()
+    return render(request, 'Clientsapp/Viewing/plan_view.html', {'plans': plans})
+
+def view_members(request):
+    members = Member.objects.all()
+    return render(request, 'Clientsapp/Viewing/view_members.html', {'members': members})
+
+def view_enquiry(request):
+    enquiries = Enquiry.objects.all()
+    return render(request, 'Clientsapp/Viewing/view_enquiry.html', {'enquiries': enquiries})
+
+################### Add ###################
 def add_plan(request):
     if request.method == 'POST':
         form = PlanFrom(request.POST)
@@ -112,6 +116,7 @@ def add_enquiry(request):
     else:
         form = EnquiryFrom()
     return render(request, 'Clientsapp/Adding/add_enquiry.html', {'form': form})
+
 ################### Update ###################
 def update_plan(request, id):
     plan = get_object_or_404(Plan, id=id)
@@ -165,4 +170,3 @@ def remove_from_enquiry(request, enquiry_id):
 
     return render(request, 'Clientsapp/Viewing/view_enquiry.html')
 
-################### Payment ###################
