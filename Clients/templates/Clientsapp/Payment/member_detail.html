@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} After Payment {% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Your Gym Membership Ticket</h2>
+                    <p class="card-text text-center">Thank you for completing the payment. Your membership details are as follows:</p>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h4>ID : {{ member.id }}</h4>
+                                    <h3>{{ member.name }}</h3>
+                                    <p><strong>Phone:</strong> {{ member.phone }}</p>
+                                    <p><strong>Email:</strong> {{ member.email }}</p>
+                                    <p><strong>Age:</strong> {{ member.age }}</p>
+                                    <p><strong>Gender:</strong> {{ member.get_gender_display }}</p>
+                                    <p><strong>Enrolled On:</strong> {{ member.enrolled_on|date:"F d, Y" }}</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul> <br>
+                    <p class="card-text text-center">Please print the ticket or take a screenshot and show it to the Gym manager when you visit.</p>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary" onclick="window.print()">Print Ticket</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
+<br>
+{% endblock %}

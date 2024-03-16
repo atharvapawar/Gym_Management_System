@@ -10,8 +10,8 @@ urlpatterns = [
     path('login/', views.my_login, name='login'),
     path('logout/', views.my_logout, name='logout'),
     ################### Payment ###################
-    path('proceed-to-pay/<int:plan_id>', views.proceed_to_pay, name='proceed_to_pay'),
     path('payment_confirmation/<int:plan_id>/', views.payment_confirmation, name='payment_confirmation'),
+    path('member_detail/<int:member_id>/', views.member_detail, name='member_detail'),
     ################### Views ###################
     path('plan_view/', views.plan_view, name='plan_view'),
     path('view_members/', views.view_members, name='view_members'),

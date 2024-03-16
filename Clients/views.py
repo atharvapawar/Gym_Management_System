@@ -58,13 +58,10 @@ def my_logout(request):
 
 ################### Payment ###################
 
-# Create a new view for payment confirmation
-def proceed_to_pay(request, plan_id):
-    plan = get_object_or_404(Plan, pk=plan_id)
-    return render(request, 'Clientsapp/Payment/proceed_to_pay.html', {'plan': plan})
-
 def payment_confirmation(request, plan_id):
     plan = get_object_or_404(Plan, pk=plan_id)
+    member = plan.member_set.last()
+    
     client = razorpay.Client(auth=(settings.RAZORPAY_TEST_KEY_ID, settings.RAZORPAY_TEST_KEY_SECRET))
     order_amount = (plan.amount * 100)
     order_currency = 'INR'
@@ -72,7 +69,11 @@ def payment_confirmation(request, plan_id):
     order = client.order.create({'amount':order_amount, 'currency':order_currency})
 
     context = {'order_amount': order_amount, 'order': order, 'razorpay_key_id': settings.RAZORPAY_TEST_KEY_ID}
-    return render(request, 'Clientsapp/Payment/payment_confirmation.html', {'plan': plan, **context})
+    return render(request, 'Clientsapp/Payment/payment_confirmation.html', {'plan': plan,'member':member, **context})
+
+def member_detail(request, member_id):
+    member = get_object_or_404(Member, pk=member_id)
+    return render(request, 'Clientsapp/Payment/member_detail.html', {'member':member})
 
 ################### Search ###################
 def plan_results(request):
@@ -115,17 +116,16 @@ def add_plan(request):
     return render(request, 'Clientsapp/Adding/add_plan.html', {'form': form})
 
 def add_member(request):
-    plans = Plan.objects.all()  # Get all available plans
+    plans = Plan.objects.all()
     if request.method == 'POST':
         form = MemberForm(request.POST, request.FILES)
         if form.is_valid():
             member = form.save(commit=False)
-            selected_plan_id = request.POST.get('plan')  # Get the selected plan ID from the form
+            selected_plan_id = request.POST.get('plan')
             plan = Plan.objects.get(pk=selected_plan_id)
             member.total_fees = plan.amount
             member.save()
-            # Redirect to the payment confirmation page with the selected plan ID
-            return redirect('proceed_to_pay', plan_id=selected_plan_id)
+            return redirect('payment_confirmation', plan_id=selected_plan_id)
     else:
         form = MemberForm()
     return render(request, 'Clientsapp/Adding/add_member.html', {'form': form, 'plans': plans})
