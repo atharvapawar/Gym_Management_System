@@ -15,10 +15,10 @@
                             Plans
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMembers">
-                            <a class="dropdown-item" href="{% url 'plan_view' %}">View Plans</a>
                             {% if request.user.is_staff %}
-                                <a class="dropdown-item" href="{% url 'add_plan' %}">Add Plan</a>
+                            <a class="dropdown-item" href="{% url 'add_plan' %}">Add Plan</a>
                             {% endif %}
+                            <a class="dropdown-item" href="{% url 'plan_view' %}">View Plans</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
