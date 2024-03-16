@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %} Payment Confirmation Page {% endblock %}
+
+{% block content %} <br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">Payment Confirmation</h1>
+                    <p class="card-text text-center">Please proceed with the payment to complete your purchase.</p>
+                    <div class="text-center mt-4">
+                        <button id="razorpay" type="button" class="btn btn-primary btn-lg">Pay With Razorpay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    document.getElementById('razorpay').addEventListener('click', function(e){
+        var options = {
+            key: "{{ razorpay_key_id }}",
+            amount: '{{ order_amount }}',
+            currency: 'INR',
+            name: 'PowerFit',
+            description: 'Purchase Description',
+            prefill: {
+                name: 'AtharvaPawar',
+                email: 'atharvapawar34s@gmail.com'
+            },
+            theme: {
+                color: "#bfff80"
+            },
+            handler: function(response){
+                alert('Payment Successful')
+            }
+        };
+
+        var razor_object = new Razorpay(options);
+        razor_object.open();
+        e.preventDefault();
+    });
+</script><br>
+{% endblock %}

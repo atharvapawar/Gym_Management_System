@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Proceed to Pay {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">Payment Confirmation</h1>
+                    <h3 class="text-center">Plan: {{ plan.name }}</h3>
+                    <h4 class="text-center">Amount: {{ plan.amount }} Rs</h4>
+                    <p class="card-text text-center mt-3">Please proceed with the payment to complete your purchase.</p>
+                    <div class="text-center mt-4">
+                        <form action="{% url 'payment_confirmation' plan.id %}" method="get">
+                            {% csrf_token %}
+                            <input type="hidden" name="total_amount" value="{{ plan.amount }}">
+                            <button id="razorpay" type="submit" class="btn btn-primary btn-lg">Pay with Razorpay</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
