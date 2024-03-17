@@ -3,37 +3,50 @@
 {% block title %}Gym Client Management Home{% endblock %}
 
 {% block content %}
-<br>
-<div class="container">
-    <div class="jumbotron">
-        <h1 class="display-4">Welcome to Gym Client Management</h1>
-        <p class="lead">This page serves as the home/dashboard for the Gym Client Management system.</p>
+<div class="container mt-5">
+    <div class="jumbotron bg-light">
+        <h1 class="display-4 text-center">Welcome to PowerFit</h1>
+        <p class="lead text-center">Start a better shape of you! Come Join Us</p>
         <hr class="my-4">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quia unde ea saepe fugit alias in minima. Debitis vel dolorem laudantium voluptatem adipisci in praesentium harum fugit, ad ducimus. Ad, ratione. Odio mollitia quos repudiandae. Error, dolor, dignissimos consectetur, possimus quae amet harum fugiat doloribus dolore unde enim molestias nulla mollitia hic.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quia unde ea saepe fugit alias in minima. Debitis vel dolorem laudantium voluptatem adipisci in praesentium harum fugit, ad ducimus. Ad, ratione. Odio mollitia quos repudiandae. Error, dolor, dignissimos consectetur, possimus quae amet harum fugiat doloribus dolore unde enim molestias nulla mollitia hic? Adipisci iure, quam deserunt omnis consequatur earum perferendis impedit mollitia inventore sunt repellendus vel autem eius corporis in, harum assumenda? Libero, consequatur eligendi. Quod officia inventore corrupti neque dolorum nemo. Culpa vitae corrupti animi facilis officia rem officiis, repudiandae enim veritatis magnam aut, nihil quas quis repellat illo.</p>
-
-        <h1>Our Plans :</h1>
+        <p class="lead">POWERFIT GYM FOR MEN & WOMEN</p>
+        <p>PowerFit Gym Fitness Center provides proper training to transform your body with programs tailored to your body composition.</p>
+        
+        <h2 class="mt-5">Join Our Membership :</h2>
+        <h2>Our Plans :</h2>
         <hr>
-        {% for plan in plans %}
-            <li class="list-group-item">
-                <div class="d-flex w-100 justify-content-between">
-                    <h2>{{ plan.name }}</h2>
-                    <h3> {{ plan.amount }} Rs</h3>
-                    <h4>{{ plan.duration }}</h4>
-                </div>
-            </li>
-        {% endfor %}
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <ul class="list-group">
+                    {% for plan in plans %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4>{{ plan.name }}</h4>
+                            <p>{{ plan.duration }}</p>
+                        </div>
+                        <div>
+                            <h5>{{ plan.amount }} Rs</h5>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
         <br>
-        <h1>Enquiry :</h1><hr>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <form method="post" enctype="multipart/form-data" id="enquiry-form">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-warning">Inform Us!</button>
-                    </form>
-                </div>
+        <h2>Visit Our Gym</h2>
+        <address><strong>Address: </strong>State Highway 78, near Shri Anant Ice Factory, Chiplun, Maharashtra 415605</address>
+        <p><strong>Email: </strong> atharvapawar@gmail.com</p>
+        <p><strong>Contact Number: </strong> 9122132435</p>
+        
+
+        <h2 class="mt-5">Enquiry :</h2>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form method="post" enctype="multipart/form-data" id="enquiry-form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-warning btn-block mt-3">Inform Us!</button>
+                </form>
             </div>
         </div>
     </div>
