@@ -1,4 +1,3 @@
-#from http import client
 import razorpay
 from django.conf import settings
 from .models import *
@@ -7,9 +6,6 @@ from django.shortcuts import *
 from django.contrib.auth import *
 from django.contrib import messages
 from django.contrib.auth.models import *
-from django.http import HttpResponse
-from django.urls import reverse
-from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def home(request):
