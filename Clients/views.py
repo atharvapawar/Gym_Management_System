@@ -10,6 +10,10 @@ from django.contrib.auth.models import *
 # Create your views here.
 def home(request):
     plans = Plan.objects.all()
+    
+    for plan in plans:
+        plan.discounted_amount = plan.amount * 1.2
+
     if request.method == 'POST':
         form = EnquiryFrom(request.POST, request.FILES)
         if form.is_valid():
@@ -17,7 +21,7 @@ def home(request):
             return redirect('home')
     else:
         form = EnquiryFrom()
-    return render(request, 'Clientsapp/home.html', {'form': form ,'plans': plans} )
+    return render(request, 'Clientsapp/home.html', {'form': form ,'plans': plans})
 
 ################### Authentications###################
 def register(request):
