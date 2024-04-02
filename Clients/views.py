@@ -135,7 +135,7 @@ def add_enquiry(request):
         form = EnquiryFrom(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('view_enquiry')
+            return redirect('home')
     else:
         form = EnquiryFrom()
     return render(request, 'Clientsapp/Adding/add_enquiry.html', {'form': form})
